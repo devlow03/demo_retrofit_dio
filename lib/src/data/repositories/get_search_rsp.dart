@@ -1,50 +1,48 @@
-class GetProductCategoryRsp {
-  GetProductCategoryRsp({
-      List<ProdCategory>? prodCategory,}){
-    _prodCategory = prodCategory;
+class GetSearchRsp {
+  GetSearchRsp({
+      List<SearchProducts>? searchProducts,}){
+    _searchProducts = searchProducts;
 }
 
-  GetProductCategoryRsp.fromJson(dynamic json) {
-    if (json['prod_category'] != null) {
-      _prodCategory = [];
-      json['prod_category'].forEach((v) {
-        _prodCategory?.add(ProdCategory.fromJson(v));
+  GetSearchRsp.fromJson(dynamic json) {
+    if (json['searchProducts'] != null) {
+      _searchProducts = [];
+      json['searchProducts'].forEach((v) {
+        _searchProducts?.add(SearchProducts.fromJson(v));
       });
     }
   }
-  List<ProdCategory>? _prodCategory;
-GetProductCategoryRsp copyWith({  List<ProdCategory>? prodCategory,
-}) => GetProductCategoryRsp(  prodCategory: prodCategory ?? _prodCategory,
+  List<SearchProducts>? _searchProducts;
+GetSearchRsp copyWith({  List<SearchProducts>? searchProducts,
+}) => GetSearchRsp(  searchProducts: searchProducts ?? _searchProducts,
 );
-  List<ProdCategory>? get prodCategory => _prodCategory;
+  List<SearchProducts>? get searchProducts => _searchProducts;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (_prodCategory != null) {
-      map['prod_category'] = _prodCategory?.map((v) => v.toJson()).toList();
+    if (_searchProducts != null) {
+      map['searchProducts'] = _searchProducts?.map((v) => v.toJson()).toList();
     }
     return map;
   }
 
 }
 
-class ProdCategory {
-  ProdCategory({
-      int? idCategory, 
-      String? nameType, 
-      String? image, 
+class SearchProducts {
+  SearchProducts({
       int? id, 
+      int? idCategory, 
       int? featured, 
       String? imgLink, 
       String? name, 
       int? price, 
       String? shortDes, 
       String? descript, 
-      int? favorite,}){
-    _idCategory = idCategory;
-    _nameType = nameType;
-    _image = image;
+      int? favorite, 
+      String? nameType, 
+      String? image,}){
     _id = id;
+    _idCategory = idCategory;
     _featured = featured;
     _imgLink = imgLink;
     _name = name;
@@ -52,13 +50,13 @@ class ProdCategory {
     _shortDes = shortDes;
     _descript = descript;
     _favorite = favorite;
+    _nameType = nameType;
+    _image = image;
 }
 
-  ProdCategory.fromJson(dynamic json) {
-    _idCategory = json['id_category'];
-    _nameType = json['name_type'];
-    _image = json['image'];
+  SearchProducts.fromJson(dynamic json) {
     _id = json['id'];
+    _idCategory = json['id_category'];
     _featured = json['featured'];
     _imgLink = json['img_link'];
     _name = json['name'];
@@ -66,11 +64,11 @@ class ProdCategory {
     _shortDes = json['short_des'];
     _descript = json['descript'];
     _favorite = json['favorite'];
+    _nameType = json['name_type'];
+    _image = json['image'];
   }
-  int? _idCategory;
-  String? _nameType;
-  String? _image;
   int? _id;
+  int? _idCategory;
   int? _featured;
   String? _imgLink;
   String? _name;
@@ -78,10 +76,10 @@ class ProdCategory {
   String? _shortDes;
   String? _descript;
   int? _favorite;
-ProdCategory copyWith({  int? idCategory,
-  String? nameType,
-  String? image,
-  int? id,
+  String? _nameType;
+  String? _image;
+SearchProducts copyWith({  int? id,
+  int? idCategory,
   int? featured,
   String? imgLink,
   String? name,
@@ -89,10 +87,10 @@ ProdCategory copyWith({  int? idCategory,
   String? shortDes,
   String? descript,
   int? favorite,
-}) => ProdCategory(  idCategory: idCategory ?? _idCategory,
-  nameType: nameType ?? _nameType,
-  image: image ?? _image,
-  id: id ?? _id,
+  String? nameType,
+  String? image,
+}) => SearchProducts(  id: id ?? _id,
+  idCategory: idCategory ?? _idCategory,
   featured: featured ?? _featured,
   imgLink: imgLink ?? _imgLink,
   name: name ?? _name,
@@ -100,11 +98,11 @@ ProdCategory copyWith({  int? idCategory,
   shortDes: shortDes ?? _shortDes,
   descript: descript ?? _descript,
   favorite: favorite ?? _favorite,
+  nameType: nameType ?? _nameType,
+  image: image ?? _image,
 );
-  int? get idCategory => _idCategory;
-  String? get nameType => _nameType;
-  String? get image => _image;
   int? get id => _id;
+  int? get idCategory => _idCategory;
   int? get featured => _featured;
   String? get imgLink => _imgLink;
   String? get name => _name;
@@ -112,13 +110,13 @@ ProdCategory copyWith({  int? idCategory,
   String? get shortDes => _shortDes;
   String? get descript => _descript;
   int? get favorite => _favorite;
+  String? get nameType => _nameType;
+  String? get image => _image;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id_category'] = _idCategory;
-    map['name_type'] = _nameType;
-    map['image'] = _image;
     map['id'] = _id;
+    map['id_category'] = _idCategory;
     map['featured'] = _featured;
     map['img_link'] = _imgLink;
     map['name'] = _name;
@@ -126,6 +124,8 @@ ProdCategory copyWith({  int? idCategory,
     map['short_des'] = _shortDes;
     map['descript'] = _descript;
     map['favorite'] = _favorite;
+    map['name_type'] = _nameType;
+    map['image'] = _image;
     return map;
   }
 

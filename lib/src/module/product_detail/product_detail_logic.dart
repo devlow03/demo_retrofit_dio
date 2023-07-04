@@ -7,9 +7,9 @@ import '../../data/services/service.dart';
 
 class Product_detailLogic extends GetxController {
   final  Services  services ;
-   String? id;
+   int? id;
   Rxn<GetSliderProductRsp>getSliderProductRsp = Rxn();
-  Product_detailLogic(this.services,{required this.id});
+  Product_detailLogic(this.services);
 
 
 
@@ -17,12 +17,12 @@ class Product_detailLogic extends GetxController {
   onReady() {
     // TODO: implement onReady
     super.onReady();
-    getSliderProduct();
+    getSliderProduct;
   }
 
-  Future<GetSliderProductRsp?>getSliderProduct()async{
-    print(id);
-     getSliderProductRsp.value = await services.getSliderProductRsp(id: id??"");
+  Future<GetSliderProductRsp?>getSliderProduct({required int id})async{
+
+     getSliderProductRsp.value = await services.getSliderProductRsp(id: id??0);
      print(jsonEncode(getSliderProductRsp.value));
 
      return  getSliderProductRsp.value;
