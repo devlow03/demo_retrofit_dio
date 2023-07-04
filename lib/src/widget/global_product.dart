@@ -35,27 +35,28 @@ class _GlobalProductState extends State<GlobalProduct> {
       // padding: EdgeInsets.symmetric(vertical: 5),
       width: MediaQuery.of(context).size.width*.3,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        // borderRadius: BorderRadius.circular(10),
         // border: Border.all(color: Colors.red),
-        border: Border.all(color: Colors.grey.shade300,),
-        color: Colors.white,
+        border: Border.all(color: Colors.transparent,width: 0),
+        color: Colors.transparent,
       ),
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10)
-            ),
+            borderRadius: BorderRadius.circular(10),
+            // borderRadius: BorderRadius.only(
+            //     topLeft: Radius.circular(10),
+            //     topRight: Radius.circular(10)
+            // ),
             child: Image.network(widget.imageLink??'',
-              width: MediaQuery.of(context).size.width*.3,
+              width: MediaQuery.of(context).size.width*.35,
               height: 150,
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 5,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(widget.nameProduct??'',
@@ -63,9 +64,9 @@ class _GlobalProductState extends State<GlobalProduct> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                  height: 1,
-                  // fontWeight: FontWeight.w500,
-                  fontSize: 15,
+                  height: 1.2,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
                   color: Colors.black
               ),),
           ),
@@ -74,7 +75,8 @@ class _GlobalProductState extends State<GlobalProduct> {
             child: Text(
               widget.shortDes??'',
               style: TextStyle(fontSize: 12,
-                fontWeight: FontWeight.w400,
+
+                color: Colors.grey
               ),
               maxLines: 1,),
           ),
@@ -91,7 +93,7 @@ class _GlobalProductState extends State<GlobalProduct> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(NumberFormat.simpleCurrency(locale: 'vi').format(double.parse(widget.price)),
-                          style: TextStyle(fontSize: 14,color: Colors.redAccent),),
+                          style: TextStyle(fontSize: 14,color: Colors.black,fontWeight: FontWeight.w600),),
                       ],
                     ),
                     // Row(

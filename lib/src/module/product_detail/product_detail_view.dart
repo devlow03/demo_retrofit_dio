@@ -27,7 +27,7 @@ class Product_detailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: Colors.white,
           // centerTitle: true,
           leading: IconButton(
             onPressed: () {
@@ -41,7 +41,11 @@ class Product_detailPage extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.shopping_cart,size: 30,color: Colors.black,),
+            child: Image.asset("assets/icons/bag_icon.png",
+            height: 30,
+                width: 30,
+
+            ),
           )
         ],
       ),
@@ -49,16 +53,14 @@ class Product_detailPage extends StatelessWidget {
       body: Obx(() {
         return ListView(
           children: [
-            const SizedBox(
-              height: 10,
-            ),
+
             CarouselSlider.builder(
               itemCount: logic.getSliderProductRsp.value?.slider?.length ?? 0,
               options: CarouselOptions(
-                aspectRatio: 20 / 16,
+                aspectRatio: 24 / 20,
                 autoPlay: false,
                 // autoPlayInterval: Duration(seconds: 3),
-                enlargeCenterPage: true,
+                // enlargeCenterPage: true,
 
                 onPageChanged: (index, reason) {},
                 viewportFraction: 1,
@@ -86,7 +88,7 @@ class Product_detailPage extends StatelessWidget {
               },
             ),
             const SizedBox(
-              height: 20,
+              height: 5,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
@@ -98,7 +100,9 @@ class Product_detailPage extends StatelessWidget {
                         child: Text(
                           name,
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                              fontSize: 20,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                     ],
@@ -106,12 +110,14 @@ class Product_detailPage extends StatelessWidget {
                   const SizedBox(height: 10,),
                   Row(
                     children: [
+                      Icon(Icons.star,color: Colors.orange,),
+                      const SizedBox(width: 5,),
                       Text(
-                        NumberFormat.simpleCurrency(locale: 'vi').format(double.parse(price)),
+                        '4.5/5 (50 đánh giá)',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: FontWeight.w700,
-                          color: Colors.redAccent
+                          color: Colors.black
                         ),
                       ),
                     ],
@@ -119,25 +125,30 @@ class Product_detailPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 1,
-              color: Colors.grey.shade200,
-            ),
+
+            // Container(
+            //   width: MediaQuery.of(context).size.width,
+            //   height: 10,
+            //   color: Colors.grey.shade200,
+            // ),
            Padding(
-             padding: const EdgeInsets.all(8.0),
+             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
              child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
                children: [
-                 const SizedBox(height: 10,),
-                 Text('Mô tả sản phẩm'),
-                 const SizedBox(height: 20,),
+                 // const SizedBox(height: 10,),
+                 // Text('Mô tả sản phẩm'),
+                 // const SizedBox(height: 20,),
                  Row(
                    children: [
-
                      Expanded(
                          child: Text(description,
-                         maxLines: 10,
+                         maxLines: 15,
+                           style: TextStyle(
+                             height: 1.5,
+                             fontSize: 15,
+                             color: Colors.grey.shade700
+                           ),
                          ),
 
                      )
@@ -145,10 +156,103 @@ class Product_detailPage extends StatelessWidget {
                  )
                ],
              ),
-           )
+           ),
+            const SizedBox(height: 10,),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 10,
+              color: Colors.grey.shade200,
+            ),
+            const SizedBox(height: 10,),
           ],
         );
       }),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 0.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+
+            Container(
+              padding: EdgeInsets.all(5),
+              height: 60,
+              // width: MediaQuery.of(context).size.width*.45,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Giá',style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey
+                    ),),
+                    const SizedBox(height: 5,),
+                    Text(NumberFormat.simpleCurrency(locale: 'vi').format(double.parse(price)),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w700
+
+                    ),),
+                  ],
+                ),
+              )
+              // ElevatedButton(
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Colors.green,
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(8)
+              //     )
+              //   ),
+              //   onPressed: (){
+              //
+              //   },
+              //   child: Icon(Icons.add_shopping_cart_outlined,size: 30,)
+              // ),
+            ),
+            const SizedBox(width: 5),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                height: 65,
+                // width: MediaQuery.of(context).size.width*.45,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)
+                        )
+
+                    ),
+                    onPressed: (){
+
+                    },
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.add_shopping_cart_outlined,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(width: 3,),
+                        Text('Thêm vào giỏ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          letterSpacing: 0.5
+                        ),
+                        ),
+
+                      ],
+                    ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
